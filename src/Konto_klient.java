@@ -22,7 +22,7 @@ public class Konto_klient {
             fasade.opprettNyKonto(konto);
 
             //oppretterny konto med konstruktor i stedet for setMetodene
-            konto = new Konto("2400666772", 300.0, "Ola Normann");//tar alle parametre Id som lages automatisk
+            konto = new Konto("2400666772", 300.0, "Ola Normann");
             fasade.opprettNyKonto(konto);
 
             konto = new Konto("2400666662", 650, "Kari Normann");
