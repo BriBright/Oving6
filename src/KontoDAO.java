@@ -20,7 +20,7 @@ public class KontoDAO {
         }
     }
 
-    //finn bok basert på kontonr
+    //finn konto basert på kontonr
     public Konto finnKonto(String kontonr) {
         EntityManager em = getEM();
         try {

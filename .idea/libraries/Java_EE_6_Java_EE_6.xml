@@ -10,6 +10,9 @@
       <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp.jstl.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javax.resource.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jakarta.persistence_2.2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/eclipselink.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-8.0.19.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

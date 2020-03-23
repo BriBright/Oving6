@@ -37,6 +37,6 @@ public class Konto implements Serializable {
     }
 
     public String toString() {
-        return "Konto: Eier: " + eier + " kontonr:" + kontonr + ". Saldo: " + saldo;
+        return "Konto eier: " + eier + ", kontonr:" + kontonr + ". Har en saldo på: " + saldo;
     }
 }

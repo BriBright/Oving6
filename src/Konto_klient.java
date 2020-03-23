@@ -14,6 +14,7 @@ public class Konto_klient {
             fasade = new KontoDAO((emf));
             System.out.println("konstruktor ferdig");
 
+            /*
             //Oppretter konto med setMetodene
             Konto konto = new Konto();
             konto.setKontonr("32010004444");
@@ -30,7 +31,14 @@ public class Konto_klient {
 
             konto = new Konto("0000000000", 10000, "Even Evensen");
             fasade.opprettNyKonto(konto);
+            */
+            /*
+            Konto k1 = new Konto("5200310039484", 4000, "Birger Birgersen");
+            Konto k2 = new Konto("44220948208", 25.5, "Ellen String");
+            fasade.opprettNyKonto(k1);
+            fasade.opprettNyKonto(k2);
 
+           */
 
             //Skriv ut alle kontoene som er lagret
             System.out.println("Følgende kontoer er lagret i DB:");
@@ -47,14 +55,13 @@ public class Konto_klient {
             }
 
             //Endre på eier
-            konto = (Konto) liste.get(0);
-            konto.setEier("Endret eier");
+            Konto konto = (Konto) liste.get(0);
+            konto.setEier("Hei hei Halloooåå");
             fasade.endreKonti(konto);
 
             konto = fasade.finnKonto(konto.getKontonr());
-            System.out.println("Eier er nå endret til " + konto);
+            System.out.println("Eier er nå endret til " + konto.getEier() + " med kontonr: "+ konto.getKontonr());
 
-            /*
             //Trekk beløp
             konto = (Konto)liste.get(0);
             konto.trekk(2000);
@@ -62,7 +69,7 @@ public class Konto_klient {
 
             konto = fasade.finnKonto(konto.getKontonr());
             System.out.println("Nåværende saldo:" + konto.getSaldo());
-            */
+
 
         } catch (Exception e){
             e.printStackTrace();
