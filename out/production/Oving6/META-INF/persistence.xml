@@ -1,0 +1,11 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+    <persistence-unit name="pu" transaction-type="RESOURCE_LOCAL">
+        <class>Konto</class>
+        <properties>
+            <property name="javax.persistence.jdbc.user" value="brigittb"/>
+            <property name="javax.persistence.jdbc.password" value="VEnJxE6X"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://mysql-ait.stud.idi.ntnu.no:3306/brigittb"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+        </properties>
+    </persistence-unit>
+</persistence>

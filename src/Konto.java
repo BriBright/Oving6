@@ -1,5 +1,3 @@
-package entitet;
-
 import javax.persistence.*;
 import java.io.*;
 import java.util.*;
@@ -39,6 +37,6 @@ public class Konto implements Serializable {
     }
 
     public String toString() {
-        return "entitet.Konto: Eier: " + eier + " kontonr:" + kontonr + ". Saldo: " + saldo;
+        return "Konto: Eier: " + eier + " kontonr:" + kontonr + ". Saldo: " + saldo;
     }
 }
