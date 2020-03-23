@@ -35,6 +35,10 @@ public class Konto implements Serializable {
         double res = getSaldo() - beløp;
         setSaldo(res);
     }
+    public void settInnPeng(double beløp){
+        double res = getSaldo() + beløp;
+        setSaldo(res);
+    }
 
     public String toString() {
         return "Konto eier: " + eier + ", kontonr:" + kontonr + ". Har en saldo på: " + saldo;

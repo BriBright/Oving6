@@ -1,75 +1,57 @@
+import org.eclipse.persistence.internal.oxm.schema.model.All;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Konto_klient {
     public static void main(String args[]) throws NullPointerException {
         EntityManagerFactory emf = null;
-        KontoDAO fasade = null;
-        System.out.println("Starts...");
+        KontoDAO kontoDAO = null;
+        System.out.println("Starter...");
         try {
             emf = Persistence.createEntityManagerFactory("pu");
+            kontoDAO = new KontoDAO((emf));
 
-            System.out.println("konstruktør ferdig " + emf);
-            fasade = new KontoDAO((emf));
-            System.out.println("konstruktor ferdig");
-
-            /*
-            //Oppretter konto med setMetodene
-            Konto konto = new Konto();
-            konto.setKontonr("32010004444");
-            konto.setSaldo(25000.9);
-            konto.setEier("Navn Navnesen");
-            fasade.opprettNyKonto(konto);
-
-            //oppretterny konto med konstruktor i stedet for setMetodene
-            konto = new Konto("2400666772", 300.0, "Ola Normann");
-            fasade.opprettNyKonto(konto);
-
-            konto = new Konto("2400666662", 650, "Kari Normann");
-            fasade.opprettNyKonto(konto);
-
-            konto = new Konto("0000000000", 10000, "Even Evensen");
-            fasade.opprettNyKonto(konto);
-            */
-            /*
-            Konto k1 = new Konto("5200310039484", 4000, "Birger Birgersen");
-            Konto k2 = new Konto("44220948208", 25.5, "Ellen String");
-            fasade.opprettNyKonto(k1);
-            fasade.opprettNyKonto(k2);
-
-           */
 
             //Skriv ut alle kontoene som er lagret
             System.out.println("Følgende kontoer er lagret i DB:");
-            List<Konto> liste = fasade.getAlleKontoer();
+            List<Konto> liste = kontoDAO.getAlleKontoer();
             for (Konto k : liste) {
                 System.out.println("---" + k);
             }
+            
+            System.out.println("\n");
 
             //lister ut alle kontoer med saldo større enn gitt beløp
-            liste = fasade.getKontoMedSaldo(1000);
-            System.out.println("Følgenede har mer enn 1000kr i saldo: " + liste.size());
+            liste = kontoDAO.getKontoMedSaldo(1000);
+            System.out.println("Følgenede har mer enn 1000kr i saldo: " + liste.size() + "stk:");
             for (Konto k : liste) {
-                System.out.println("\t" + k.getEier() + ", saldo: " + k.getSaldo());
+                System.out.println("\t" + k.toString());
             }
+
+            System.out.println("\n");
 
             //Endre på eier
             Konto konto = (Konto) liste.get(0);
             konto.setEier("Hei hei Halloooåå");
-            fasade.endreKonti(konto);
+            kontoDAO.endreKonti(konto);
 
-            konto = fasade.finnKonto(konto.getKontonr());
-            System.out.println("Eier er nå endret til " + konto.getEier() + " med kontonr: "+ konto.getKontonr());
+            konto = kontoDAO.finnKonto(konto.getKontonr());
+            System.out.println("Eier er nå endret til " + konto.getEier() + " med kontonr: "+ konto.getKontonr() + "\n");
 
-            //Trekk beløp
-            konto = (Konto)liste.get(0);
-            konto.trekk(2000);
-            fasade.endreKonti(konto);
+            //Overføring
+            Konto overførFra = (Konto)liste.get(1);
+            Konto overførTil = (Konto)liste.get(0);
 
-            konto = fasade.finnKonto(konto.getKontonr());
-            System.out.println("Nåværende saldo:" + konto.getSaldo());
+            double belop = 1500;
+            kontoDAO.overforing(belop,overførFra.getKontonr(),overførTil.getKontonr());
 
+            overførFra = kontoDAO.finnKonto(overførFra.getKontonr());
+            overførTil = kontoDAO.finnKonto(overførTil.getKontonr());
+            System.out.println("Overfører " + belop + " fra " + overførFra.getEier()+ " til " +
+                        overførTil.getEier()+ "\nNåværende saldo: " + "\n" + overførFra.toString() + "\n" + overførTil.toString());
 
         } catch (Exception e){
             e.printStackTrace();
