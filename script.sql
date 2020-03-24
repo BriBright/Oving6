@@ -1,9 +1,9 @@
-DROP TABLE IF EXISTS Konto;
+DROP TABLE IF EXISTS KONTO;
 
-CREATE TABLE Konto(
+CREATE TABLE KONTO(
   kontonr varchar(50) NOT NULL,
   saldo double,
   eier varchar(50) NOT NULL,
-  optim_lock integer NOT NULL,
+  optima_lock integer NOT NULL,
   PRIMARY KEY (kontonr)
 );

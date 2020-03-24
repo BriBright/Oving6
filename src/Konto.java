@@ -6,7 +6,13 @@ import java.util.*;
 
 public class Konto implements Serializable {
     @Id
+    @Column(name = "KONTONR")
     private String kontonr;
+
+    @Version
+    @Column(name = "optima_lock")
+    private int lock;
+
     private double saldo;
     private String eier;
 
@@ -17,6 +23,7 @@ public class Konto implements Serializable {
         this.kontonr = kontonr;
         this.saldo = saldo;
         this.eier = eier;
+        this.lock = 0;
     }
 
     public String getKontonr() { return kontonr; }
@@ -26,6 +33,12 @@ public class Konto implements Serializable {
     public double getSaldo(){ return saldo; }
 
     public void setSaldo(double saldo){ this.saldo = saldo; }
+
+    public int getLock(){ return lock; }
+
+    public void setLock(int lock){
+        this.lock = lock;
+    }
 
     public String getEier() { return eier; }
 

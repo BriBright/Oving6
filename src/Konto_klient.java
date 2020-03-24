@@ -14,6 +14,13 @@ public class Konto_klient {
             emf = Persistence.createEntityManagerFactory("pu");
             kontoDAO = new KontoDAO((emf));
 
+            Konto k1 = new Konto("333444555",5000,"Brigitt");
+            Konto k2 = new Konto("222333444", 300, "Helle");
+            Konto k3 = new Konto("1114433", 2500, "Inga");
+            kontoDAO.opprettNyKonto(k1);
+            kontoDAO.opprettNyKonto(k2);
+            kontoDAO.opprettNyKonto(k3);
+
 
             //Skriv ut alle kontoene som er lagret
             System.out.println("Følgende kontoer er lagret i DB:");
@@ -35,23 +42,24 @@ public class Konto_klient {
 
             //Endre på eier
             Konto konto = (Konto) liste.get(0);
-            konto.setEier("Hei hei Halloooåå");
+            konto.setEier("Per");
             kontoDAO.endreKonti(konto);
 
             konto = kontoDAO.finnKonto(konto.getKontonr());
             System.out.println("Eier er nå endret til " + konto.getEier() + " med kontonr: "+ konto.getKontonr() + "\n");
 
-            //Overføring
-            Konto overførFra = (Konto)liste.get(1);
-            Konto overførTil = (Konto)liste.get(0);
+            List<Konto> liste2 = kontoDAO.getAlleKontoer();
+            for (Konto k : liste2) {
+                System.out.println("---" + k);
+            }
 
-            double belop = 1500;
-            kontoDAO.overforing(belop,overførFra.getKontonr(),overførTil.getKontonr());
+            double belop = 500;
+            kontoDAO.overforing(belop,"333444555","222333444");
 
-            overførFra = kontoDAO.finnKonto(overførFra.getKontonr());
-            overførTil = kontoDAO.finnKonto(overførTil.getKontonr());
-            System.out.println("Overfører " + belop + " fra " + overførFra.getEier()+ " til " +
-                        overførTil.getEier()+ "\nNåværende saldo: " + "\n" + overførFra.toString() + "\n" + overførTil.toString());
+            k1 = kontoDAO.finnKonto("333444555");
+            k2 = kontoDAO.finnKonto("222333444");
+            System.out.println("Overfører " + belop + " fra " + k1.getEier()+ " til " +
+                        k2.getEier()+ "\nNåværende saldo: " + "\n" + k1.toString() + "\n" + k2.toString());
 
         } catch (Exception e){
             e.printStackTrace();
